@@ -58,7 +58,7 @@ var view = (function(){
 
     function setBackgroundGradientTo(colour) {
         var wireframe = document.querySelector("#colour-visualiser");
-        wireframe.style.backgroundImage = generateGradientFrom(colour); 
+        wireframe.style.backgroundImage = utility.generateGradientFrom(colour); 
     }
 
     // functions for adding elements to the UI
@@ -76,6 +76,18 @@ var view = (function(){
 
         box.addEventListener("click",datastore.changeSecondaryColour.bind(null,box.dataset.colour));
     }
+    
+    function addSubmitButton() {
+        var colourBoxList = document.querySelector("#choice-of-colours ul");
+        var li = document.createElement("li");
+        var button = utility.createButton("select");
+        
+        li.style.position = "absolute";
+        li.appendChild(button);
+        colourBoxList.appendChild(li); 
+        
+        return button;
+    }
 
     // functions for removing elements from the UI
 
@@ -84,5 +96,5 @@ var view = (function(){
         Array.from(colourBoxList.children).forEach( node => colourBoxList.removeChild(node) ); 
     }
 
-    return {clearColourOptions,addColourOption};
+    return {clearColourOptions,addColourOption,addSubmitButton};
 })();

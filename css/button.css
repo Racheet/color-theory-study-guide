@@ -1,0 +1,109 @@
+/*
+    Document   : css/button.css
+    Some code gratefully borrowed from: https://tympanus.net/codrops/2013/06/13/creative-button-styles/
+    Under license: https://tympanus.net/codrops/licensing/
+    Found on github at: https://github.com/codrops/CreativeButtons
+*/
+
+
+/* General button style (reset) */
+.btn {
+	border: none;
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;
+	background: none;
+	cursor: pointer;
+	display: inline-block;
+	text-transform: uppercase;
+	font-weight: 700;
+	outline: none;
+	position: relative;
+	transition: all 0.3s;
+}
+
+
+.btn-7 {
+	background: #17aa56;
+	color: #fff;
+	border-radius: 7px;
+	box-shadow: 0 5px #119e4d;
+	padding: 6px 27px 9px 27px;
+    height: 27px;
+    font-size: 8pt;
+    letter-spacing: 2px;
+}
+
+/* Button 7h */
+
+.btn-7h span {
+	display: inline-block;
+	width: 100%;
+}
+
+
+
+/* Success and error */
+
+.btn-success,
+.btn-error {
+	color: transparent;
+}
+
+.btn-success:after,
+.btn-error:after {
+    z-index:1;
+	color: #fff;
+    left: 19%;
+    position:absolute;
+}
+
+.btn-success:after {
+    left: 19%;
+}
+
+.btn-error:after {
+    left: 25%;
+}
+.btn-success:after {
+	content: "Correct!";
+	animation: moveUp 0.5s;
+}
+
+@keyframes moveUp {
+	0% {
+		transform: translateY(50%);
+		opacity: 0;
+	}
+	100% { 
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.btn-error {
+	animation: shake 0.5s;
+}
+
+/* From Dan Eden's animate.css: http://daneden.me/animate/ */
+@keyframes shake {
+	0%, 100% {transform: translateX(0);}
+	10%, 30%, 50%, 70%, 90% {transform: translateX(-10px);}
+	20%, 40%, 60%, 80% {transform: translateX(10px);}
+}
+
+.btn-error:after {
+	content: "Wrong!";
+	animation: scaleFromUp 0.5s;
+}
+
+@keyframes scaleFromUp {
+	0% {
+		transform: scale(0);
+		opacity: 0;
+	}
+	100% { 
+		opacity: 1;
+		transform: scale(1);
+	}
+}
