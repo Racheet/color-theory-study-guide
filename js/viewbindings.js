@@ -10,7 +10,6 @@ var view = (function(){
     function showSecondaryColourAs(colour) {
         console.log("secondary colour:",colour);
         changeLogoColour(colour);
-        changeCircleColour(colour);
         changeNavItemsColour(colour);
 
     }
@@ -18,6 +17,7 @@ var view = (function(){
 
     function showTertiaryColourAs(colour) {
         console.log("tertiary colour:",colour);
+        changeCircleColour(colour);
 
     }
 

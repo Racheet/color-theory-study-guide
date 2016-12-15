@@ -51,7 +51,7 @@ var datastore = (function datatore() {
         var defaultOutput = {
             "primaryColour": "#55f",
             "secondaryColour": "#000",
-            "tertiaryColour": "#fff"
+            "tertiaryColour": "#000"
         };
 
         switch(action.type) {

@@ -11,14 +11,13 @@ function runTest(primaryColour,targetColours,isAnswerCorrect) {
 
     datastore.changePrimaryColour(primaryColour);
 
+    targetColours.forEach( targetColour => colourOptions.push(targetColour) );
+    
     for(let i = 0, limit = Math.max(5, Math.random() * 29); i <= limit; i++) {
             colourOptions.push(colourGenerator.generateRandomColourFromSeed(primaryColour));
     }
     
     colourOptions = utility.stripSimilarColours(colourOptions); 
-    targetColours.forEach( targetColour => colourOptions.push(targetColour) );
-    colourOptions.sort((colour1, colour2) => parseInt(utility.getHue(colour2)) - parseInt(utility.getHue(colour1)));
-    
     colourOptions.forEach(view.addColourOption);
     
     button = view.addSubmitButton();
@@ -31,9 +30,13 @@ function runComplementaryColourTest() {
     
    function isComplementaryColour(targetColours) {
         var currentColours = datastore.getState();
+        var primaryColour = currentColours.primaryColour;
+        var secondaryColour = currentColours.secondaryColour;
+        var distanceBetweenColours = utility.distanceBetweenTwoColours(primaryColour,secondaryColour);
+        var tooSmall = 160; // degrees around the colour wheel
+        var tooFar = 185; // degrees around the colour wheel
 
-        return targetColours.some( targetColour => currentColours.secondaryColour === targetColour );
-    
+        return  distanceBetweenColours > tooSmall && distanceBetweenColours < tooFar;
    }
     
    function taskDescription(){
