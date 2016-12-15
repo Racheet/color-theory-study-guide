@@ -63,7 +63,7 @@ function runAnalogousColourTest() {
         var secondaryColour = currentColours.secondaryColour;
         var distanceBetweenColours = utility.distanceBetweenTwoColours(primaryColour,secondaryColour);
         var tooSmall = 0; // degrees around the colour wheel
-        var tooFar = 75; // degrees around the colour wheel
+        var tooFar = 70; // degrees around the colour wheel
 
         return  distanceBetweenColours > tooSmall && distanceBetweenColours < tooFar;
     }
