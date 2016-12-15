@@ -61,6 +61,17 @@ var view = (function(){
         wireframe.style.backgroundImage = utility.generateGradientFrom(colour); 
     }
 
+    function changeSubtitle(copy) {
+        var subtile = document.querySelector("#subtitle");
+        subtile.textContent = copy.toString();
+    }
+    
+    function changeDescription(newChildren) {
+        var description = document.querySelector("#task-description");
+        Array.from(description.children).forEach( node => description.removeChild(node) ); 
+        newChildren.forEach( node => description.appendChild(node) );
+    }
+    
     // functions for adding elements to the UI
 
     function addColourOption(colour) {
@@ -96,5 +107,5 @@ var view = (function(){
         Array.from(colourBoxList.children).forEach( node => colourBoxList.removeChild(node) ); 
     }
 
-    return {clearColourOptions,addColourOption,addSubmitButton};
+    return {clearColourOptions,addColourOption,addSubmitButton,changeSubtitle,changeDescription};
 })();
