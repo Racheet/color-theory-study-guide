@@ -1,23 +1,8 @@
-function isAnswerCorrect(targetColour) {
-    var currentColours = datastore.getState();
-    
-    return currentColours.secondaryColour === targetColour;
-    
-}
 
-function stripSimilarColours(memo,next,index) {
-        var firstColour, secondColour;
-        var tooClose = 30;
-        
-        if (memo.length === 0) {return [next];};
-        
-        firstColour = utility.getHue(memo[memo.length - 1]);
-        secondColour = utility.getHue(next);
-        
-        return Math.abs(firstColour - secondColour) < tooClose? memo : memo.concat(next);
-}
 
-function runTest(primaryColour,targetColour) {
+
+
+function runTest(primaryColour,targetColours,isAnswerCorrect) {
     
     view.clearColourOptions();
 
@@ -30,20 +15,26 @@ function runTest(primaryColour,targetColour) {
             colourOptions.push(colourGenerator.generateRandomColourFromSeed(primaryColour));
     }
     
-    colourOptions.sort((colour1, colour2) => parseInt(utility.getHue(colour2)) - parseInt(utility.getHue(colour1)));
-    colourOptions = colourOptions.reduce(stripSimilarColours, []);
-    colourOptions.push(targetColour);
+    colourOptions = utility.stripSimilarColours(colourOptions); 
+    targetColours.forEach( targetColour => colourOptions.push(targetColour) );
     colourOptions.sort((colour1, colour2) => parseInt(utility.getHue(colour2)) - parseInt(utility.getHue(colour1)));
     
     colourOptions.forEach(view.addColourOption);
     
     button = view.addSubmitButton();
-    button.addEventListener("click",validator.generateButtonClickHandler(button,isAnswerCorrect.bind(null,targetColour)),false);
+    button.addEventListener("click",validator.generateButtonClickHandler(button,isAnswerCorrect.bind(null,targetColours)),false);
 }
 
 function runComplementaryColourTest() {
    var newPrimaryColour = colourGenerator.generateRandomColour();
    var newComplementaryColour = colourGenerator.generateComplementaryColourFromSeed(newPrimaryColour);
+    
+   function isComplementaryColour(targetColours) {
+        var currentColours = datastore.getState();
+
+        return targetColours.some( targetColour => currentColours.secondaryColour === targetColour );
+    
+   }
     
    function taskDescription(){
        var output = [];
@@ -54,9 +45,53 @@ function runComplementaryColourTest() {
        return output;
    }
    
-   view.changeSubtitle("Select A Complementary Colour");
+   view.changeSubtitle("Select a complementary colour");
    view.changeDescription(taskDescription());
-   runTest(newPrimaryColour,newComplementaryColour);
+   runTest(newPrimaryColour,[newComplementaryColour],isComplementaryColour);
 }
 
-runComplementaryColourTest();
+function runAnalogousColourTest() {
+   var newPrimaryColour = colourGenerator.generateRandomColour();
+   var newAnalogousColours = colourGenerator.generateAnalogousColoursFromSeed(newPrimaryColour);
+    
+    function isAnalogousColour(targetColours) {
+        var currentColours = datastore.getState();
+        var primaryColour = currentColours.primaryColour;
+        var secondaryColour = currentColours.secondaryColour;
+        var distanceBetweenColours = utility.distanceBetweenTwoColours(primaryColour,secondaryColour);
+        var tooSmall = 0; // degrees around the colour wheel
+        var tooFar = 75; // degrees around the colour wheel
+
+        return  distanceBetweenColours > tooSmall && distanceBetweenColours < tooFar;
+    }
+   
+   function taskDescription(){
+       var output = [];
+       output.push(document.createElement("p"));
+       output.push(document.createElement("p"));
+       output[0].textContent = "Analogous colours are two colours that sit alongside each other on the colour wheel.";
+       output[1].textContent = "When used together, they match well and produce a serene and pleasing effect.";
+       return output;
+   }
+   
+   view.changeSubtitle("Select an analogous colour");
+   view.changeDescription(taskDescription());
+   runTest(newPrimaryColour,newAnalogousColours,isAnalogousColour);
+}
+
+
+function runANewTest() {
+    var availableTests = [];
+    var randomPick;  
+    
+    availableTests.push(runComplementaryColourTest);
+    availableTests.push(runAnalogousColourTest);
+    
+    
+    randomPick = Math.floor(Math.random() * availableTests.length);
+    
+    availableTests[randomPick]();
+    
+}
+
+runANewTest();

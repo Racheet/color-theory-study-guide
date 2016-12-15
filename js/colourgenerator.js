@@ -17,7 +17,16 @@ var colourGenerator = (function() {
         return complement;
 
     }
+    
+    function generateAnalogousColoursFromSeed(initialColour) {
+        initialColour = initialColour || datastore.getState().primaryColour;
+        var wrappedColour = utility.parseViaChromath(initialColour);
+        var analogousColours = wrappedColour.analogous(2).map( colour => colour.toString() );
 
+        return analogousColours.slice(1);
+
+    }
+    
     function generateRandomColour() {
         var hue = parseInt(Math.random() * 360); 
         var saturation = parseInt(70 + Math.random() * 30) + "%";
@@ -28,6 +37,6 @@ var colourGenerator = (function() {
         return output;
     }
 
-    return {generateRandomColourFromSeed,generateComplementaryColourFromSeed,generateRandomColour};
+    return {generateRandomColourFromSeed,generateComplementaryColourFromSeed,generateAnalogousColoursFromSeed,generateRandomColour};
     
 })()

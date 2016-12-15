@@ -1,5 +1,33 @@
 var utility = (function() {
 
+    function distanceBetweenTwoColours(colour1,colour2) {
+        var hue1 = parseInt(getHue(colour1));
+        var hue2 = parseInt(getHue(colour2));
+        var smaller = Math.min(hue1,hue2);
+        var larger = Math.max(hue1,hue2);
+        var distance = larger - smaller;
+        
+        return distance < 180? distance :  360 - distance; 
+    }
+ 
+    function stripSimilarColours(arr){
+        
+        arr.sort((colour1, colour2) => parseInt(getHue(colour2)) - parseInt(getHue(colour1)));
+        
+        return arr.reduce( function (memo,next,index) {
+            var firstColour, secondColour;
+            var tooClose = 30;
+
+            if (memo.length === 0) {return [next];};
+
+            firstColour = utility.getHue(memo[memo.length - 1]);
+            secondColour = utility.getHue(next);
+
+            return Math.abs(firstColour - secondColour) < tooClose? memo : memo.concat(next);
+            
+        },[]);
+    }
+    
     function createButton(caption) {
         var button = document.createElement("button");
         
@@ -41,6 +69,6 @@ var utility = (function() {
         return new Chromath(colour);
     }
 
-    return {getHue,getSaturation,getLightness,generateGradientFrom,parseViaChromath,createButton};
+    return {getHue,getSaturation,getLightness,generateGradientFrom,distanceBetweenTwoColours,stripSimilarColours,parseViaChromath,createButton};
 
 })()
