@@ -6,7 +6,7 @@ var colourGenerator = (function() {
         var saturation = utility.getSaturation(initialColour);
         var lightness = utility.getLightness(initialColour);
 
-        return `hsl(${ parseInt(Math.random() * 360) }, ${ saturation }, ${ lightness })`
+        return `hsl(${ parseInt(Math.random() * 361) }, ${ saturation }, ${ lightness })`
     }
 
     function generateComplementaryColourFromSeed(initialColour) {
@@ -20,8 +20,8 @@ var colourGenerator = (function() {
 
     function generateRandomColour() {
         var hue = parseInt(Math.random() * 360); 
-        var saturation = parseInt(Math.random() * 100) + "%";
-        var lightness = parseInt(Math.random() * 100) + "%";
+        var saturation = parseInt(70 + Math.random() * 30) + "%";
+        var lightness = parseInt(30 + Math.random() * 40) + "%";
 
         var output = `hsl(${ hue }, ${ saturation }, ${ lightness })`
 

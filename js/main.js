@@ -6,6 +6,19 @@ function isAnswerCorrect() {
     
 }
 
+function stripSimilarColours(memo,next,index) {
+        var firstColour, secondColour;
+        var tooClose = 35;
+        
+        if (memo.length === 0) {return [next];};
+        
+        firstColour = utility.getHue(memo[memo.length - 1]);
+        secondColour = utility.getHue(next);
+        
+        return Math.abs(firstColour - secondColour) < tooClose? memo : memo.concat(next);
+        
+        
+}
 
 function resetColourOptions() {
     
@@ -18,11 +31,13 @@ function resetColourOptions() {
 
     colourOptions.push(complementaryColour);
 
-    for(let i = 0, limit = Math.max(2, Math.random() * 14); i <= limit; i++) {
+    for(let i = 0, limit = Math.max(5, Math.random() * 29); i <= limit; i++) {
             colourOptions.push(colourGenerator.generateRandomColourFromSeed(primaryColour));
     }
     
     colourOptions.sort((colour1, colour2) => parseInt(utility.getHue(colour2)) - parseInt(utility.getHue(colour1)));
+    colourOptions = colourOptions.reduce(stripSimilarColours, []);
+    
     colourOptions.forEach(view.addColourOption);
     
     button = view.addSubmitButton();
