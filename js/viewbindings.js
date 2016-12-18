@@ -69,13 +69,17 @@ var view = (function(){
     function changeDescription(newChildren) {
         var description = document.querySelector("#task-description");
         Array.from(description.children).forEach( node => description.removeChild(node) ); 
-        newChildren.forEach( node => description.appendChild(node) );
+        newChildren.forEach( node =>  { 
+            var li = document.createElement("li");
+            li.appendChild(node);
+            description.appendChild(li);
+        });
     }
     
     // functions for adding elements to the UI
 
     function addColourOption(colour) {
-        var colourBoxList = document.querySelector("#choice-of-colours ul");
+        var colourBoxList = document.querySelector("#choice-of-colours ul#list-of-colours");
         var li = document.createElement("li");
         var box = document.createElement("div");
         box.classList.add("colour-box");
@@ -89,7 +93,7 @@ var view = (function(){
     }
     
     function addSubmitButton() {
-        var colourBoxList = document.querySelector("#choice-of-colours ul");
+        var colourBoxList = document.querySelector("#choice-of-colours ul#list-of-colours");
         var li = document.createElement("li");
         var button = utility.createButton("select");
         
@@ -103,12 +107,12 @@ var view = (function(){
     // functions for removing elements from the UI
 
     function clearColourOptions() {
-        var colourBoxList = document.querySelector("#choice-of-colours ul");
+        var colourBoxList = document.querySelector("#choice-of-colours ul#list-of-colours");
         Array.from(colourBoxList.children).forEach( node => colourBoxList.removeChild(node) ); 
     }
     
     function deselectAllColourBoxes() {
-        var colourBoxList = document.querySelector("#choice-of-colours ul");
+        var colourBoxList = document.querySelector("#choice-of-colours ul#list-of-colours");
         Array.from(colourBoxList.querySelectorAll("div")).forEach( div => div.classList.remove("selected-colour-box","secondary-colour","tertiary-colour") ); 
     }
     
