@@ -188,7 +188,7 @@ h1 {
 
 figure {
     max-width: 500px;
-    border: 1px solid #eee;
+    border: 1px solid #999;
     margin: 14pt 0 0 0;
     padding: 2em;
     background-image: radial-gradient(circle at top center, rgba(255,255,255,1), rgba(233,233,233,1) );

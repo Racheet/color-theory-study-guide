@@ -56,7 +56,7 @@ var utility = (function() {
         var hue = getHue(colour);
         var saturation = getSaturation(colour);
         var gradientRange = 5;
-        var standardGradient = `radial-gradient(circle at top center, hsl(${Math.max(hue-gradientRange,0)},${saturation},100%), hsl(${Math.min(hue+gradientRange,360)},${saturation},85%))`;
+        var standardGradient = `radial-gradient(circle at top center, hsl(${Math.max(hue-gradientRange,0)},${saturation},25%), hsl(${Math.min(hue+gradientRange,360)},${saturation},35%))`;
         return standardGradient;
     }
 
