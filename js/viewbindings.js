@@ -85,7 +85,7 @@ var view = (function(){
         li.appendChild(box);
         colourBoxList.appendChild(li);
 
-        box.addEventListener("click",datastore.changeSecondaryColour.bind(null,box.dataset.colour));
+        box.addEventListener("click",selectFirstBox.bind(null,box));
     }
     
     function addSubmitButton() {
@@ -106,6 +106,20 @@ var view = (function(){
         var colourBoxList = document.querySelector("#choice-of-colours ul");
         Array.from(colourBoxList.children).forEach( node => colourBoxList.removeChild(node) ); 
     }
+    
+    function deselectAllColourBoxes() {
+        var colourBoxList = document.querySelector("#choice-of-colours ul");
+        Array.from(colourBoxList.querySelectorAll("div")).forEach( div => div.classList.remove("selected-colour-box","secondary-colour","tertiary-colour") ); 
+    }
+    
+    // click handlers
+    
+    function selectFirstBox(box) {
+        deselectAllColourBoxes();
+        box.classList.add("selected-colour-box","secondary-colour");
+        datastore.changeSecondaryColour(box.dataset.colour);
+    }
 
+  
     return {clearColourOptions,addColourOption,addSubmitButton,changeSubtitle,changeDescription};
 })();
