@@ -1,7 +1,5 @@
 
 
-
-
 function runTest(primaryColour,targetColours,isAnswerCorrect) {
     
     view.clearColourOptions();
