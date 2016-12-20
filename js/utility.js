@@ -68,7 +68,29 @@ var utility = (function() {
         }
         return new Chromath(colour);
     }
+    
+    function shuffleArray(array) {
+        var output = array.slice();
+        var currentIndex = output.length, temporaryValue, randomIndex;
 
-    return {getHue,getSaturation,getLightness,generateGradientFrom,distanceBetweenTwoColours,stripSimilarColours,parseViaChromath,createButton};
+      // While there remain elements to shuffle...
+      while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = output[currentIndex];
+        output[currentIndex] = output[randomIndex];
+        output[randomIndex] = temporaryValue;
+      }
+
+      return output;
+
+        
+    }
+
+    return {getHue,getSaturation,getLightness,generateGradientFrom,distanceBetweenTwoColours,stripSimilarColours,parseViaChromath,createButton,shuffleArray};
 
 })()

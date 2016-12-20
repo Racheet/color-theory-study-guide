@@ -16,6 +16,7 @@ function runTest(primaryColour,targetColours,isAnswerCorrect) {
     }
     
     colourOptions = utility.stripSimilarColours(colourOptions); 
+    colourOptions = utility.shuffleArray(colourOptions);
     colourOptions.forEach(view.addColourOption);
     
     button = view.addSubmitButton();
