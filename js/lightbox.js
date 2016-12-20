@@ -6,7 +6,7 @@ var lightbox = (function lightbox() {
             "<h2>The Colour Wheel</h2>",
             "<p>The colour wheel is a tool for selecting harmonious combinations of colour.</p>",
             "<p>By learning to place colours on the wheel, you\'ll become better at selecting pairs of colours that look good together.</p>",
-            '<img src="/img/colourwheel_big.svg" />',
+            '<img src="img/colourwheel_big.svg" />',
          "</aside>"].join("")
        };
 
