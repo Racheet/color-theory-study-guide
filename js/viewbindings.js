@@ -76,6 +76,7 @@ var view = (function(){
         });
     }
     
+    
     // functions for adding elements to the UI
 
     function addColourOption(colour) {
@@ -125,5 +126,14 @@ var view = (function(){
     }
 
   
+    function bindLightboxToRibbon () {
+        var ribbon = document.querySelector("aside#colour-wheel");
+        ribbon.addEventListener("click",lightbox.open);
+    }
+    
+    // setup
+    
+    bindLightboxToRibbon();
+    
     return {clearColourOptions,addColourOption,addSubmitButton,changeSubtitle,changeDescription};
 })();

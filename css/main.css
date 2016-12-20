@@ -120,6 +120,13 @@ h1 {
     margin: 0 0 0.67em 0;
 }
 
+aside h2 {
+    font-size: 16pt;
+    font-weight: normal;
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+}
+
 .colour-box {
     border: 1px solid #999; 
     border-radius: 5px;
@@ -129,6 +136,29 @@ h1 {
 
 .selected-colour-box, .colour-box:hover {
    border-color: #000; 
+}
+
+aside#colour-wheel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index:10;
+    height: 65px;
+    margin-bottom: -65px;
+    width: 47px;
+    background: rgba(0,0,0,0.3);
+    top: -3.3em;
+    left: 85%;
+    cursor: pointer;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+
+
+aside img.icon {
+    width: 70%
 }
 
 #subtitle {
@@ -249,7 +279,31 @@ figure > article nav div.nav-item {
     margin-right: 5pt;
 }
 
-
+@keyframes jump {
+  0%{
+	transform: translateY(0);
+    filter: grayscale(0%)
+  }
+  20%{
+	transform: translateY(0);
+  }
+  40%{
+	transform: translateY(-15px);
+  }
+  50%{
+	transform: translateY(0);
+  }
+  60%{
+	transform: translateY(-7px);
+  }
+  80%{
+	transform: translateY(0);
+  }
+  100%{
+	transform: translateY(0);
+    filter: grayscale(0%)
+  }
+}
 
 /* ==========================================================================
    Helper classes
@@ -343,6 +397,14 @@ figure > article nav div.nav-item {
        max-width: 460px;
     }
     
+    aside#colour-wheel {
+        left: 88%;
+    }  
+    
+    aside#colour-wheel:hover > img {
+        animation: jump 1.5s ease 0s infinite normal; 
+    }
+
 }
 
 @media print,
