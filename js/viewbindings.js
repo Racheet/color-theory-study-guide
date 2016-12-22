@@ -73,7 +73,7 @@ var view = (function(){
             var li = document.createElement("li");
             var span = document.createElement("span");
             li.appendChild(span);
-            span.textContext = text.toString();
+            span.textContent = text.toString();
             description.appendChild(li);
         });
     }
@@ -119,14 +119,28 @@ var view = (function(){
         Array.from(colourBoxList.querySelectorAll("div")).forEach( div => div.classList.remove("selected-colour-box","secondary-colour","tertiary-colour") ); 
     }
     
+     function deselectFirstColourBox() {
+        var firstColourBoxList = document.querySelectorAll("#choice-of-colours ul#list-of-colours div.secondary-colour");
+        Array.from(firstColourBoxList).forEach( div => div.classList.remove("selected-colour-box","secondary-colour") ); 
+    }   
+    
+     function deselectSecondColourBox() {
+        var secondColourBoxList = document.querySelectorAll("#choice-of-colours ul#list-of-colours div.tertiary-colour");
+        Array.from(secondColourBoxList).forEach( div => div.classList.remove("selected-colour-box","tertiary-colour") ); 
+    }
     // click handlers
     
     function selectFirstBox(box) {
-        deselectAllColourBoxes();
+        deselectFirstColourBox();
         box.classList.add("selected-colour-box","secondary-colour");
         datastore.changeSecondaryColour(box.dataset.colour);
     }
 
+    function selectSecondBox(box) {
+        deselectSecondColourBox();
+        box.classList.add("selected-colour-box","tertiary-colour");
+        datastore.changeTertiaryColour(box.dataset.colour);
+    }
   
     function bindLightboxToRibbon () {
         var ribbon = document.querySelector("aside#colour-wheel");
