@@ -40,10 +40,8 @@ function runComplementaryColourTest() {
     
    function taskDescription(){
        var output = [];
-       output.push(document.createElement("span"));
-       output.push(document.createElement("span"));
-       output[0].textContent = "Complementary colours are two colours that sit directly opposite each other on the colour wheel.";
-       output[1].textContent = "When used together, they make each other look more intense.";
+       output.push("Complementary colours are two colours that sit directly opposite each other on the colour wheel.");
+       output.push("When used together, they make each other look more intense.");
        return output;
    }
    
@@ -69,10 +67,8 @@ function runAnalogousColourTest() {
    
    function taskDescription(){
        var output = [];
-       output.push(document.createElement("span"));
-       output.push(document.createElement("span"));
-       output[0].textContent = "Analogous colours are two colours that sit alongside each other on the colour wheel.";
-       output[1].textContent = "When used together, they match well and produce a serene and pleasing effect.";
+       output.push("Analogous colours are two colours that sit alongside each other on the colour wheel.");
+       output.push("When used together, they match well and produce a serene and pleasing effect.");
        return output;
    }
    

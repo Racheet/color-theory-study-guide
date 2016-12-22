@@ -69,9 +69,11 @@ var view = (function(){
     function changeDescription(newChildren) {
         var description = document.querySelector("#task-description");
         Array.from(description.children).forEach( node => description.removeChild(node) ); 
-        newChildren.forEach( node =>  { 
+        newChildren.forEach( text =>  { 
             var li = document.createElement("li");
-            li.appendChild(node);
+            var span = document.createElement("span");
+            li.appendChild(span);
+            span.textContext = text.toString();
             description.appendChild(li);
         });
     }
