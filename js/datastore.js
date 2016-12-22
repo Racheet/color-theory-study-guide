@@ -39,7 +39,7 @@ var datastore = (function datatore() {
             output.secondaryColour = action.newColour;
             return output;
 
-        case "teriary colour":
+        case "tertiary colour":
             output.tertiaryColour = action.newColour;
             return output;
         }

@@ -1,6 +1,6 @@
 
 
-function runTest(primaryColour,targetColours,isAnswerCorrect) {
+function runTest(primaryColour,targetColours,isAnswerCorrect,isOneColourTest) {
     
     view.clearColourOptions();
 
@@ -17,7 +17,7 @@ function runTest(primaryColour,targetColours,isAnswerCorrect) {
     
     colourOptions = utility.stripSimilarColours(colourOptions); 
     colourOptions = utility.shuffleArray(colourOptions);
-    colourOptions.forEach(view.addColourOption);
+    colourOptions.forEach(view.addColourOption.bind(null,isOneColourTest));
     
     button = view.addSubmitButton();
     button.addEventListener("click",validator.generateButtonClickHandler(button,isAnswerCorrect.bind(null,targetColours)),false);
@@ -26,6 +26,7 @@ function runTest(primaryColour,targetColours,isAnswerCorrect) {
 function runComplementaryColourTest() {
    var newPrimaryColour = colourGenerator.generateRandomColour();
    var newComplementaryColour = colourGenerator.generateComplementaryColourFromSeed(newPrimaryColour);
+   var isOneColourTest = true;
     
    function isComplementaryColour(targetColours) {
         var currentColours = datastore.getState();
@@ -47,12 +48,13 @@ function runComplementaryColourTest() {
    
    view.changeSubtitle("Select a complementary colour");
    view.changeDescription(taskDescription());
-   runTest(newPrimaryColour,[newComplementaryColour],isComplementaryColour);
+   runTest(newPrimaryColour,[newComplementaryColour],isComplementaryColour,isOneColourTest);
 }
 
 function runAnalogousColourTest() {
    var newPrimaryColour = colourGenerator.generateRandomColour();
    var newAnalogousColours = colourGenerator.generateAnalogousColoursFromSeed(newPrimaryColour);
+   var isOneColourTest = true;
     
     function isAnalogousColour(targetColours) {
         var currentColours = datastore.getState();
@@ -74,7 +76,7 @@ function runAnalogousColourTest() {
    
    view.changeSubtitle("Select an analogous colour");
    view.changeDescription(taskDescription());
-   runTest(newPrimaryColour,newAnalogousColours,isAnalogousColour);
+   runTest(newPrimaryColour,newAnalogousColours,isAnalogousColour,isOneColourTest);
 }
 
 

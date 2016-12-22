@@ -81,7 +81,7 @@ var view = (function(){
     
     // functions for adding elements to the UI
 
-    function addColourOption(colour) {
+    function addColourOption(isOneColourTest = true,colour) {
         var colourBoxList = document.querySelector("#choice-of-colours ul#list-of-colours");
         var li = document.createElement("li");
         var box = document.createElement("div");
@@ -92,7 +92,7 @@ var view = (function(){
         li.appendChild(box);
         colourBoxList.appendChild(li);
 
-        box.addEventListener("click",selectFirstBox.bind(null,box));
+        box.addEventListener("click",clickOnBox.bind(null,box,isOneColourTest));
     }
     
     function addSubmitButton() {
@@ -117,16 +117,20 @@ var view = (function(){
     function deselectAllColourBoxes() {
         var colourBoxList = document.querySelector("#choice-of-colours ul#list-of-colours");
         Array.from(colourBoxList.querySelectorAll("div")).forEach( div => div.classList.remove("selected-colour-box","secondary-colour","tertiary-colour") ); 
+        datastore.setSecondaryColour("#fff");
+        datastore.setTertiaryColour("#fff");
     }
     
      function deselectFirstColourBox() {
         var firstColourBoxList = document.querySelectorAll("#choice-of-colours ul#list-of-colours div.secondary-colour");
         Array.from(firstColourBoxList).forEach( div => div.classList.remove("selected-colour-box","secondary-colour") ); 
+        datastore.changeSecondaryColour("#000");
     }   
     
      function deselectSecondColourBox() {
         var secondColourBoxList = document.querySelectorAll("#choice-of-colours ul#list-of-colours div.tertiary-colour");
         Array.from(secondColourBoxList).forEach( div => div.classList.remove("selected-colour-box","tertiary-colour") ); 
+        datastore.changeTertiaryColour("#000");
     }
     // click handlers
     
@@ -140,6 +144,20 @@ var view = (function(){
         deselectSecondColourBox();
         box.classList.add("selected-colour-box","tertiary-colour");
         datastore.changeTertiaryColour(box.dataset.colour);
+    }
+    
+    function clickOnBox(box,isOneColourTest = true) {
+        var colourBoxList = document.querySelectorAll("#choice-of-colours ul#list-of-colours li div");
+        var isFirstBoxSet = Array.from(colourBoxList).some( div => div.classList.contains("secondary-colour"));
+        var isClickOnFirstBox = box.classList.contains("secondary-colour");
+        var isClickOnSecondBox = box.classList.contains("tertiary-colour");
+        
+        if (isClickOnFirstBox) { return deselectFirstColourBox(); }
+        if (isClickOnSecondBox) { return deselectSecondColourBox(); }
+        if (isOneColourTest) { return selectFirstBox(box); }
+        if (isFirstBoxSet) { return selectSecondBox(box); }
+        
+        return selectFirstBox(box);
     }
   
     function bindLightboxToRibbon () {
