@@ -134,7 +134,7 @@ aside h2 {
     height: 30px;
 }
 
-.selected-colour-box, .colour-box:hover {
+.selected-colour-box {
    border-color: #000; 
 }
 
@@ -403,6 +403,10 @@ figure > article nav div.nav-item {
     
     aside#colour-wheel:hover > img {
         animation: jump 1.5s ease 0s infinite normal; 
+    }
+    
+    .colour-box:hover {
+       border-color: #000; 
     }
 
 }
