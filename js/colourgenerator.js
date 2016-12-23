@@ -18,6 +18,14 @@ var colourGenerator = (function() {
 
     }
     
+    function generateSplitComplementaryColoursFromSeed(initialColour) {
+        initialColour = initialColour || datastore.getState().primaryColour;
+        var wrappedColour = utility.parseViaChromath(initialColour);
+        var splitComplement = wrappedColour.splitcomplement().map( colour => colour.toString() );
+
+        return splitComplement.slice(1);
+
+    }   
     function generateAnalogousColoursFromSeed(initialColour) {
         initialColour = initialColour || datastore.getState().primaryColour;
         var wrappedColour = utility.parseViaChromath(initialColour);
@@ -37,6 +45,12 @@ var colourGenerator = (function() {
         return output;
     }
 
-    return {generateRandomColourFromSeed,generateComplementaryColourFromSeed,generateAnalogousColoursFromSeed,generateRandomColour};
+    return {
+        generateRandomColourFromSeed,
+        generateComplementaryColourFromSeed,
+        generateSplitComplementaryColoursFromSeed,
+        generateAnalogousColoursFromSeed,
+        generateRandomColour
+    };
     
 })()

@@ -51,6 +51,48 @@ function runComplementaryColourTest() {
    runTest(newPrimaryColour,[newComplementaryColour],isComplementaryColour,isOneColourTest);
 }
 
+
+function runSplitComplementaryColourTest() {
+    var newPrimaryColour = colourGenerator.generateRandomColour();
+    var newSplitComplementaryColours = colourGenerator.generateSplitComplementaryColoursFromSeed(newPrimaryColour);
+    var isOneColourTest = false;
+
+    function isSplitComplementaryColour(targetColours) {
+        var currentColours = datastore.getState();
+        var primaryColour = currentColours.primaryColour;
+        var secondaryColour = currentColours.secondaryColour;
+        var tertiaryColour = currentColours.tertiaryColour;
+        var distanceBetweenPrimaryAndSecondaryColours = utility.distanceBetweenTwoColours(primaryColour, secondaryColour);
+        var distanceBetweenPrimaryAndTertiaryColours = utility.distanceBetweenTwoColours(primaryColour, tertiaryColour);
+        var distanceBetweenSecondaryAndTertiaryColours = utility.distanceBetweenTwoColours(secondaryColour, tertiaryColour);
+        var tooSmall = 135; // degrees around the colour wheel
+        var tooFar = 165; // degrees around the colour wheel
+        var properSeparation = 30; // degrees around the colour wheel
+
+        var isSecondaryColourRight = distanceBetweenPrimaryAndSecondaryColours > tooSmall && distanceBetweenPrimaryAndSecondaryColours < tooFar;
+        var isTertiaryColourRight = distanceBetweenPrimaryAndTertiaryColours > tooSmall && distanceBetweenPrimaryAndTertiaryColours < tooFar;
+
+        var areSecondaryAndTertiaryColoursDifferent = distanceBetweenSecondaryAndTertiaryColours > properSeparation;
+
+        return isSecondaryColourRight && isTertiaryColourRight && areSecondaryAndTertiaryColoursDifferent;
+    }
+    
+    function taskDescription(){
+       var output = [];
+       output.push("A Split Complementary colour scheme uses the two colours that sit on either side of the complementary colour.");
+       output.push("This provides the same strong visual contrast as a complementary colour harmony.");
+       output.push("A split complementary colour scheme is often a safe choice, since it provides visual tension without being overwhelming.");
+       return output;
+   }
+
+    view.changeSubtitle("Select split complementary colours");
+    view.changeDescription(taskDescription());
+    runTest(newPrimaryColour, newSplitComplementaryColours, isSplitComplementaryColour, isOneColourTest);
+}
+
+
+
+
 function runAnalogousColourTest() {
    var newPrimaryColour = colourGenerator.generateRandomColour();
    var newAnalogousColours = colourGenerator.generateAnalogousColoursFromSeed(newPrimaryColour);
@@ -61,8 +103,8 @@ function runAnalogousColourTest() {
         var primaryColour = currentColours.primaryColour;
         var secondaryColour = currentColours.secondaryColour;
         var distanceBetweenColours = utility.distanceBetweenTwoColours(primaryColour,secondaryColour);
-        var tooSmall = 0; // degrees around the colour wheel
-        var tooFar = 70; // degrees around the colour wheel
+        var tooSmall = 5; // degrees around the colour wheel
+        var tooFar = 60; // degrees around the colour wheel
 
         return  distanceBetweenColours > tooSmall && distanceBetweenColours < tooFar;
     }
@@ -85,6 +127,7 @@ function runANewTest() {
     var randomPick;  
     
     availableTests.push(runComplementaryColourTest);
+    availableTests.push(runSplitComplementaryColourTest);
     availableTests.push(runAnalogousColourTest);
     
     
