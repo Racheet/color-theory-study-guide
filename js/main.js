@@ -65,9 +65,9 @@ function runSplitComplementaryColourTest() {
         var distanceBetweenPrimaryAndSecondaryColours = utility.distanceBetweenTwoColours(primaryColour, secondaryColour);
         var distanceBetweenPrimaryAndTertiaryColours = utility.distanceBetweenTwoColours(primaryColour, tertiaryColour);
         var distanceBetweenSecondaryAndTertiaryColours = utility.distanceBetweenTwoColours(secondaryColour, tertiaryColour);
-        var tooSmall = 135; // degrees around the colour wheel
-        var tooFar = 165; // degrees around the colour wheel
-        var properSeparation = 30; // degrees around the colour wheel
+        var tooSmall = 125; // degrees around the colour wheel
+        var tooFar = 170; // degrees around the colour wheel
+        var properSeparation = 15; // degrees around the colour wheel
 
         var isSecondaryColourRight = distanceBetweenPrimaryAndSecondaryColours > tooSmall && distanceBetweenPrimaryAndSecondaryColours < tooFar;
         var isTertiaryColourRight = distanceBetweenPrimaryAndTertiaryColours > tooSmall && distanceBetweenPrimaryAndTertiaryColours < tooFar;
