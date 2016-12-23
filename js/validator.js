@@ -2,10 +2,12 @@ var validator = (function() {
     
     function successfulActivation(button) {
             button.classList.add("btn-success");
+            button.classList.remove("btn-error");
     }
     
     function unsuccessfulActivation(button) {
             button.classList.add("btn-error");
+            button.classList.remove("btn-success");
             setTimeout( () => button.classList.remove("btn-error"),1000);
     }
     
