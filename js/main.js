@@ -90,6 +90,43 @@ function runSplitComplementaryColourTest() {
     runTest(newPrimaryColour, newSplitComplementaryColours, isSplitComplementaryColour, isOneColourTest);
 }
 
+function runTriadicColourTest() {
+    var newPrimaryColour = colourGenerator.generateRandomColour();
+    var newTriadicColours = colourGenerator.generateTriadicColoursFromSeed(newPrimaryColour);
+    var isOneColourTest = false;
+
+    function isTriadicColour(targetColours) {
+        var currentColours = datastore.getState();
+        var primaryColour = currentColours.primaryColour;
+        var secondaryColour = currentColours.secondaryColour;
+        var tertiaryColour = currentColours.tertiaryColour;
+        var distanceBetweenPrimaryAndSecondaryColours = utility.distanceBetweenTwoColours(primaryColour, secondaryColour);
+        var distanceBetweenPrimaryAndTertiaryColours = utility.distanceBetweenTwoColours(primaryColour, tertiaryColour);
+        var distanceBetweenSecondaryAndTertiaryColours = utility.distanceBetweenTwoColours(secondaryColour, tertiaryColour);
+        var tooSmall = 100; // degrees around the colour wheel
+        var tooFar = 140; // degrees around the colour wheel
+        var properSeparation = 40; // degrees around the colour wheel
+
+        var isSecondaryColourRight = distanceBetweenPrimaryAndSecondaryColours > tooSmall && distanceBetweenPrimaryAndSecondaryColours < tooFar;
+        var isTertiaryColourRight = distanceBetweenPrimaryAndTertiaryColours > tooSmall && distanceBetweenPrimaryAndTertiaryColours < tooFar;
+
+        var areSecondaryAndTertiaryColoursDifferent = distanceBetweenSecondaryAndTertiaryColours > properSeparation;
+
+        return isSecondaryColourRight && isTertiaryColourRight && areSecondaryAndTertiaryColoursDifferent;
+    }
+    
+    function taskDescription(){
+       var output = [];
+       output.push("A triadic colour scheme uses colours that are evenly spaced around the colour wheel.");
+       output.push("Triadic colour schemes are very vibrant, they are best used very desaturated to avoid being overwhelming.");
+       output.push("The other way to use triads is to allow one colour to dominate and use the other two for accent.");
+       return output;
+   }
+
+    view.changeSubtitle("Select triadic colours");
+    view.changeDescription(taskDescription());
+    runTest(newPrimaryColour, newTriadicColours, isTriadicColour, isOneColourTest);
+}
 
 
 
@@ -128,6 +165,7 @@ function runANewTest() {
     
     availableTests.push(runComplementaryColourTest);
     availableTests.push(runSplitComplementaryColourTest);
+    availableTests.push(runTriadicColourTest);
     availableTests.push(runAnalogousColourTest);
     
     

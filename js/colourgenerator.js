@@ -26,6 +26,16 @@ var colourGenerator = (function() {
         return splitComplement.slice(1);
 
     }   
+    
+    function generateTriadicColoursFromSeed(initialColour) {
+        initialColour = initialColour || datastore.getState().primaryColour;
+        var wrappedColour = utility.parseViaChromath(initialColour);
+        var triadicColours = wrappedColour.triad().map( colour => colour.toString() );
+
+        return triadicColours.slice(1);
+
+    }   
+ 
     function generateAnalogousColoursFromSeed(initialColour) {
         initialColour = initialColour || datastore.getState().primaryColour;
         var wrappedColour = utility.parseViaChromath(initialColour);
@@ -49,6 +59,7 @@ var colourGenerator = (function() {
         generateRandomColourFromSeed,
         generateComplementaryColourFromSeed,
         generateSplitComplementaryColoursFromSeed,
+        generateTriadicColoursFromSeed,
         generateAnalogousColoursFromSeed,
         generateRandomColour
     };
