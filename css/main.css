@@ -101,6 +101,7 @@ body {
     font-size: 12pt;
     line-height: 14pt;
     background-color:#ddd;
+    background-image: url("../img/gray_jean.png");
 }
 
 main {
