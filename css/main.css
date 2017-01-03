@@ -110,7 +110,7 @@ main {
     max-width: 560px;
     margin: 0.5em;
     border-radius: 8px;
-    background: rgba(0,0,0,0.2);
+    background:linear-gradient(-45deg, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.3) 60%,rgba(53,59,90,0.3) 73%,rgba(75,80,81,0.3) 88%); 
 }
 
 
@@ -148,7 +148,7 @@ aside#colour-wheel {
     height: 65px;
     margin-bottom: -65px;
     width: 47px;
-    background: rgba(0,0,0,0.3);
+    background: linear-gradient(-45deg, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.3) 60%,rgba(53,59,90,0.3) 73%,rgba(75,80,81,0.3) 88%);
     top: -3.3em;
     left: 85%;
     cursor: pointer;
