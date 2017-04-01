@@ -20,14 +20,6 @@
   "engines": {
     "node": ">=0.10.0"
   },
-  "h5bp-configs": {
-    "directories": {
-      "archive": "archive",
-      "dist": "dist",
-      "src": "src",
-      "test": "test"
-    }
-  },
   "name": "colour-theory-study-tool",
   "private": true,
   "scripts": {
