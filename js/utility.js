@@ -16,7 +16,7 @@ var utility = (function() {
         
         return arr.reduce( function (memo,next,index) {
             var firstColour, secondColour;
-            var tooClose = 30;
+            var tooClose = 40;
 
             if (memo.length === 0) {return [next];};
 
@@ -35,6 +35,17 @@ var utility = (function() {
         button.textContent = caption.toString();
         
         return button;
+    }
+
+    function createReloadLink(linkText) {
+
+        var link = document.createElement("a");
+
+        link.classList.add("reload")
+        link.innerHTML = linkText.toString();
+        link.href="./index.html";
+
+        return link;
     }
     
     function getHue(colour){
@@ -91,6 +102,6 @@ var utility = (function() {
         
     }
 
-    return {getHue,getSaturation,getLightness,generateGradientFrom,distanceBetweenTwoColours,stripSimilarColours,parseViaChromath,createButton,shuffleArray};
+    return {getHue,getSaturation,getLightness,createReloadLink,generateGradientFrom,distanceBetweenTwoColours,stripSimilarColours,parseViaChromath,createButton,shuffleArray};
 
 })()

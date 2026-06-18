@@ -5,13 +5,13 @@ function runTest(primaryColour,targetColours,isAnswerCorrect,isOneColourTest) {
     view.clearColourOptions();
 
     var colourOptions = [];
-    var button;
+    var button,resetLink;
 
     datastore.changePrimaryColour(primaryColour);
 
     targetColours.forEach( targetColour => colourOptions.push(targetColour) );
     
-    for(let i = 0, limit = Math.max(5, Math.random() * 29); i <= limit; i++) {
+    for(let i = 0, limit = Math.max(5, Math.random() * 10); i <= limit; i++) {
             colourOptions.push(colourGenerator.generateRandomColourFromSeed(primaryColour));
     }
     
@@ -21,6 +21,8 @@ function runTest(primaryColour,targetColours,isAnswerCorrect,isOneColourTest) {
     
     button = view.addSubmitButton();
     button.addEventListener("click",validator.generateButtonClickHandler(button,isAnswerCorrect.bind(null,targetColours)),false);
+
+    link = view.addReloadLink();
 }
 
 function runComplementaryColourTest() {

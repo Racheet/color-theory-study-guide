@@ -280,6 +280,16 @@ figure > article nav div.nav-item {
     margin-right: 5pt;
 }
 
+
+a.reload {
+    font-family: 'Raleway', 'helvetica', sans-serif;
+    font-size: 12pt;
+    line-height: 14pt;
+    margin-left: 0.5em;
+    color: #222;
+}
+
+
 @keyframes jump {
   0%{
 	transform: translateY(0);

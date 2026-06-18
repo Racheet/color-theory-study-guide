@@ -100,11 +100,25 @@ var view = (function(){
         var li = document.createElement("li");
         var button = utility.createButton("select");
         
-        li.style.position = "absolute";
+        li.style.position = "relative";
+        li.style.top= "-14px";
         li.appendChild(button);
         colourBoxList.appendChild(li); 
         
         return button;
+    }
+
+    function addReloadLink() {
+        var colourBoxList = document.querySelector("#choice-of-colours ul#list-of-colours");
+        var li = document.createElement("li");
+        var link = utility.createReloadLink("Try Another")
+        
+        li.style.position = "relative";
+        li.style.top = "-5px";
+        li.appendChild(link);
+        colourBoxList.appendChild(li); 
+        
+        return link;
     }
 
     // functions for removing elements from the UI
@@ -169,5 +183,5 @@ var view = (function(){
     
     bindLightboxToRibbon();
     
-    return {clearColourOptions,addColourOption,addSubmitButton,changeSubtitle,changeDescription};
+    return {clearColourOptions,addColourOption,addSubmitButton,addReloadLink,changeSubtitle,changeDescription};
 })();
