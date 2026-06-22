@@ -283,10 +283,10 @@ figure > article nav div.nav-item {
 
 a.reload {
     font-family: 'Raleway', 'helvetica', sans-serif;
-    font-size: 12pt;
-    line-height: 14pt;
+    font-size: 10pt;
+    line-height: 12pt;
     margin-left: 0.5em;
-    color: #222;
+    color: #222222c4;
 }
 
 

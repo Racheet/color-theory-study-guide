@@ -35,8 +35,8 @@ function runComplementaryColourTest() {
         var primaryColour = currentColours.primaryColour;
         var secondaryColour = currentColours.secondaryColour;
         var distanceBetweenColours = utility.distanceBetweenTwoColours(primaryColour,secondaryColour);
-        var tooSmall = 160; // degrees around the colour wheel
-        var tooFar = 185; // degrees around the colour wheel
+        var tooSmall = 150; // degrees around the colour wheel
+        var tooFar = 190; // degrees around the colour wheel
 
         return  distanceBetweenColours > tooSmall && distanceBetweenColours < tooFar;
    }
@@ -67,9 +67,9 @@ function runSplitComplementaryColourTest() {
         var distanceBetweenPrimaryAndSecondaryColours = utility.distanceBetweenTwoColours(primaryColour, secondaryColour);
         var distanceBetweenPrimaryAndTertiaryColours = utility.distanceBetweenTwoColours(primaryColour, tertiaryColour);
         var distanceBetweenSecondaryAndTertiaryColours = utility.distanceBetweenTwoColours(secondaryColour, tertiaryColour);
-        var tooSmall = 125; // degrees around the colour wheel
-        var tooFar = 170; // degrees around the colour wheel
-        var properSeparation = 15; // degrees around the colour wheel
+        var tooSmall = 120; // degrees around the colour wheel
+        var tooFar = 175; // degrees around the colour wheel
+        var properSeparation = 20; // degrees around the colour wheel
 
         var isSecondaryColourRight = distanceBetweenPrimaryAndSecondaryColours > tooSmall && distanceBetweenPrimaryAndSecondaryColours < tooFar;
         var isTertiaryColourRight = distanceBetweenPrimaryAndTertiaryColours > tooSmall && distanceBetweenPrimaryAndTertiaryColours < tooFar;
@@ -105,8 +105,8 @@ function runTriadicColourTest() {
         var distanceBetweenPrimaryAndSecondaryColours = utility.distanceBetweenTwoColours(primaryColour, secondaryColour);
         var distanceBetweenPrimaryAndTertiaryColours = utility.distanceBetweenTwoColours(primaryColour, tertiaryColour);
         var distanceBetweenSecondaryAndTertiaryColours = utility.distanceBetweenTwoColours(secondaryColour, tertiaryColour);
-        var tooSmall = 100; // degrees around the colour wheel
-        var tooFar = 140; // degrees around the colour wheel
+        var tooSmall = 90; // degrees around the colour wheel
+        var tooFar = 150; // degrees around the colour wheel
         var properSeparation = 40; // degrees around the colour wheel
 
         var isSecondaryColourRight = distanceBetweenPrimaryAndSecondaryColours > tooSmall && distanceBetweenPrimaryAndSecondaryColours < tooFar;
@@ -143,7 +143,7 @@ function runAnalogousColourTest() {
         var secondaryColour = currentColours.secondaryColour;
         var distanceBetweenColours = utility.distanceBetweenTwoColours(primaryColour,secondaryColour);
         var tooSmall = 5; // degrees around the colour wheel
-        var tooFar = 60; // degrees around the colour wheel
+        var tooFar = 75; // degrees around the colour wheel
 
         return  distanceBetweenColours > tooSmall && distanceBetweenColours < tooFar;
     }
