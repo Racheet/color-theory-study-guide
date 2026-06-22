@@ -100,8 +100,6 @@ var view = (function(){
         var li = document.createElement("li");
         var button = utility.createButton("select");
         
-        li.style.position = "relative";
-        li.style.top= "-14px";
         li.appendChild(button);
         colourBoxList.appendChild(li); 
         
@@ -113,8 +111,6 @@ var view = (function(){
         var li = document.createElement("li");
         var link = utility.createReloadLink("Try Another")
         
-        li.style.position = "relative";
-        li.style.top = "-5px";
         li.appendChild(link);
         colourBoxList.appendChild(li); 
         

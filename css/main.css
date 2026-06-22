@@ -182,13 +182,26 @@ aside img.icon {
    margin: 14pt 0 0 0;
    padding: 0;
    max-width: 365px;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
 }
 
 #choice-of-colours #list-of-colours li {
    display: inline-block;
    margin-right: 0.25em;
+   margin-top: 0.5em;
     
 }
+
+#choice-of-colours #list-of-colours li:last-child {
+   display: inline-flex;
+   flex-direction: column;
+   justify-content: end;
+   height: 30px;
+    
+}
+
 
 #choice-of-colours #task-description {
    list-style: square inside; 
@@ -212,7 +225,7 @@ aside img.icon {
 }
 
 
-#choice-of-colours li:not(:first-child) {
+#task-description li:not(:first-child) {
     margin-top:3.5pt;
     
 }
